@@ -5,6 +5,8 @@ import android.support.test.filters.SmallTest;
 import android.support.v7.widget.Toolbar;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.example.job.walletapplication.Main.MainActivity;
+
 /**
  * Created by Job on 6/3/2017 AD.
  */

@@ -1,4 +1,4 @@
-package com.example.job.walletapplication;
+package com.example.job.walletapplication.Main;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -17,9 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.job.walletapplication.R;
+
+public class MainActivity extends AppCompatActivity implements WalletView{
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -64,10 +67,16 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void setPage(int page) {
+
+    }
+
 
     public static class PlaceholderFragment extends Fragment {
 
         private static final String ARG_SECTION_NUMBER = "section_number";
+        View rootView;
 
         public PlaceholderFragment() {
         }
@@ -83,9 +92,23 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(""+getArguments().getInt(ARG_SECTION_NUMBER));
+
+            if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                textView.setText("a");
+            }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                textView.setText("b");
+            }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
+//                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+//                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//                textView.setText("c");
+
+                rootView = inflater.inflate(R.layout.add_main,container,false);
+
+            }
             return rootView;
         }
     }
