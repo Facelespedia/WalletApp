@@ -1,4 +1,4 @@
-package com.example.job.walletapplication;
+package com.example.job.walletapplication.Main;
 
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -19,7 +19,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.job.walletapplication.R;
+
+public class MainActivity extends AppCompatActivity implements WalletView{
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -64,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void setPage(int page) {
+
+    }
+
 
     public static class PlaceholderFragment extends Fragment {
 
@@ -98,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 TextView textView = (TextView) rootView.findViewById(R.id.section_label);
                 textView.setText("c");
             }
-
-
             return rootView;
         }
     }
