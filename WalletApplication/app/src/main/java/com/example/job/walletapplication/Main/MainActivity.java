@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.job.walletapplication.R;
@@ -101,9 +102,12 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                 TextView textView = (TextView) rootView.findViewById(R.id.section_label);
                 textView.setText("b");
             }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
-                rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText("c");
+//                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+//                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+//                textView.setText("c");
+
+                rootView = inflater.inflate(R.layout.add_main,container,false);
+
             }
             return rootView;
         }
