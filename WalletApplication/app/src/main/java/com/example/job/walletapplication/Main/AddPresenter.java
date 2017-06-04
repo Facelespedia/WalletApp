@@ -65,7 +65,7 @@ public class AddPresenter {
             @Override
             public void onClick(View v) {
                 builder.setMessage("Confirm ?");
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Confirm", new DialogInterface.OnClickListener() {
                     int money = Integer.parseInt(Emoney.getText().toString());
                     String event = Eevent.getText().toString();
                     public void onClick(DialogInterface dialog, int id) {
@@ -73,17 +73,18 @@ public class AddPresenter {
                             data = new Income(money,event);
                             data.calculateBalance(w);
                             w.addIncome(data.getMoney());
+                            w.addDiary("+");
                             w.addEvent(data.getEvent());
                         }else if(type.equalsIgnoreCase("Expenses")) {
                             data = new Expenses(money,event);
                             data.calculateBalance(w);
                             w.addExpenses(data.getMoney());
+                            w.addDiary("-");
                             w.addEvent(data.getEvent());
                         }
-                        System.out.println(w.getBalance());
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
