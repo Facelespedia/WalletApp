@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/account_balance"
-        android:layout_width="40dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="19dp"

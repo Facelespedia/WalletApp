@@ -19,6 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+
 import com.example.job.walletapplication.Data.Wallet;
 import com.example.job.walletapplication.R;
 
@@ -66,17 +68,12 @@ public class MainActivity extends AppCompatActivity implements WalletView{
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void setPage(int page) {
-
-
-
-    }
-
-    public void clickRadio(View view) {
 
     }
 
@@ -104,35 +101,17 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                                  Bundle savedInstanceState) {
 
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
-
-                rootView = inflater.inflate(R.layout.note_main, container, false);
-
-            }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
-
+                System.out.println(w.getBalance());
                 rootView = inflater.inflate(R.layout.account_main,container,false);
-                String[] myItem = {"a","b","c","d","e"};
+                TextView textBalance = (TextView) rootView.findViewById(R.id.account_balance);
+                textBalance.setText(""+w.getBalance());
+                String[] myItem = {"a","b","c","d","e","f","g","h","i","h"};
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rootView.getContext(), R.layout.activity_listview, R.id.textView, myItem);
                 ListView listView = (ListView) rootView.findViewById(R.id.listView_main);
                 listView.setAdapter(arrayAdapter);
 
-//                if(w.getDiary().size() > 0) {
-//                    int incomeIndex = 0,expensesIndex = 0;
-//                    for (int i = 0; i < w.getDiary().size(); i++) {
-//                        if (w.getDiary().get(i).equalsIgnoreCase("+")) {
-//                            System.out.println("Income : " + w.getIncome().get(incomeIndex));
-//                            System.out.println("Event : " + w.getDiary().get(i));
-//                            incomeIndex++;
-//                        } else if (w.getDiary().get(i).equalsIgnoreCase("-")) {
-//                            System.out.println("Expenses : " + w.getExpenses().get(expensesIndex));
-//                            System.out.println("Event : " + w.getEvent().get(i));
-//                            expensesIndex++;
-//                        }
-//
-//                    }
-//                }
-
-            }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
-
+            }
+            if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
                 if(addPresenter == null) {
                     addPresenter = new AddPresenter(w,inflater.inflate(R.layout.add_main,container,false));
                     rootView = addPresenter.getView();
@@ -141,10 +120,10 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                     addPresenter.setID(R.id.editText_event,R.id.editText_money);
                     Button submit = (Button) rootView.findViewById(R.id.button_submit);
                     addPresenter.onClickSubmit(submit);
-
                 }
 
             }
+
             return rootView;
         }
 
@@ -173,9 +152,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Note";
-                case 1:
-                    return "Today";
+                    return "Account";
                 case 2:
                     return "ADD";
             }
