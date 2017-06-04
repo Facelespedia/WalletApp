@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         View rootView;
         AddPresenter addPresenter = null;
         WalletPresenter walletPresenter = null;
+        String[] myItem;
 
         public PlaceholderFragment() {
         }
@@ -105,7 +106,17 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                 rootView = inflater.inflate(R.layout.account_main,container,false);
                 TextView textBalance = (TextView) rootView.findViewById(R.id.account_balance);
                 textBalance.setText(""+w.getBalance());
-                String[] myItem = {"a","b","c","d","e","f","g","h","i","h"};
+                int indexIncome=0,indexExpenses=0;
+                myItem = new String[w.getDiary().size()];
+                for(int i = 0;i < myItem.length;i++) {
+                    if(w.getDiary().get(i).equalsIgnoreCase("+")) {
+                        myItem[i] = "Income Event : " +w.getEvent().get(i)+"        Money : "+w.getIncome().get(indexIncome) +" Bath";
+                        indexIncome++;
+                    }else if(w.getDiary().get(i).equalsIgnoreCase("-")) {
+                        myItem[i] = "Expenses Event : " +w.getEvent().get(i)+"        Money : "+w.getExpenses().get(indexExpenses) +" Bath";
+                        indexExpenses++;
+                    }
+                }
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rootView.getContext(), R.layout.activity_listview, R.id.textView, myItem);
                 ListView listView = (ListView) rootView.findViewById(R.id.listView_main);
                 listView.setAdapter(arrayAdapter);
