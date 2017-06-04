@@ -94,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                                  Bundle savedInstanceState) {
 
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
-                rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText("a");
+
+                rootView = inflater.inflate(R.layout.note_main, container, false);
+
             }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
 
                 rootView = inflater.inflate(R.layout.account_main,container,false);
