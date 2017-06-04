@@ -22,11 +22,6 @@ public class AddPresenter {
 
 
     public void onClickRadioButton(RadioButton rbI,RadioButton rbE) {
-        rbI.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
 
     }

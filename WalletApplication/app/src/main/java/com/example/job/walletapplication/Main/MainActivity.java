@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                     RadioButton rbE = (RadioButton) rootView.findViewById(R.id.radioButton_expenses);
                     addPresenter.onClickRadioButton(rbI,rbE);
 
+
                 }
 
             }

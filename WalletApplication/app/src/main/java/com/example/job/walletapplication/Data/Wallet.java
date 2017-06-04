@@ -6,15 +6,15 @@ package com.example.job.walletapplication.Data;
 
 public class Wallet {
 
-    public int balance;
+
 
     public Wallet() {
-        balance = 0;
+
     }
 
-    public int getBalance() {
-        return balance;
-    }
+//    public int getBalance() {
+//        return balance;
+//    }
 
 
 //    abstract void calculateBalance(int value);
