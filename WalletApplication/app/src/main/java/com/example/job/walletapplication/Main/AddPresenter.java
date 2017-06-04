@@ -1,6 +1,8 @@
 package com.example.job.walletapplication.Main;
 
+import android.provider.Settings;
 import android.view.View;
+import android.widget.RadioButton;
 
 import com.example.job.walletapplication.Data.Wallet;
 
@@ -18,6 +20,16 @@ public class AddPresenter {
         this.v = v;
     }
 
+
+    public void onClickRadioButton(RadioButton rbI,RadioButton rbE) {
+        rbI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+
+    }
 
     public View getView(){
         return v;

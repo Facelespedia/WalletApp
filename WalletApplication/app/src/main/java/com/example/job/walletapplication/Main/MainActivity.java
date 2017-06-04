@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.job.walletapplication.Data.Wallet;
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity implements WalletView{
 
     }
 
+    public void clickRadio(View view) {
+
+    }
+
 
     public static class PlaceholderFragment extends Fragment {
 
@@ -111,6 +116,10 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                     Wallet w = new Wallet();
                     addPresenter = new AddPresenter(w,inflater.inflate(R.layout.add_main,container,false));
                     rootView = addPresenter.getView();
+                    RadioButton rbI = (RadioButton) rootView.findViewById(R.id.radioButton_income);
+                    RadioButton rbE = (RadioButton) rootView.findViewById(R.id.radioButton_expenses);
+                    addPresenter.onClickRadioButton(rbI,rbE);
+
                 }
 
             }
