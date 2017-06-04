@@ -63,20 +63,15 @@ public class AddPresenter {
                 int money = Integer.parseInt(Emoney.getText().toString());
                 String event = Eevent.getText().toString();
                 if(type.equalsIgnoreCase("Income")) {
-                    System.out.println("TYPE : " + type);
-                    System.out.println("Event : " + event);
-                    System.out.println("Money : " + money);
                     data = new Income(money,event);
                     data.calculateBalance(w);
-                    System.out.println(w.getBalance());
-
+                    w.addIncome(data.getMoney());
+                    w.addEvent(data.getEvent());
                 }else if(type.equalsIgnoreCase("Expenses")) {
-                    System.out.println("TYPE : " + type);
-                    System.out.println("Event : " + event);
-                    System.out.println("Money : " + money);
                     data = new Expenses(money,event);
                     data.calculateBalance(w);
-                    System.out.println(w.getBalance());
+                    w.addExpenses(data.getMoney());
+                    w.addEvent(data.getEvent());
                 }
 
 

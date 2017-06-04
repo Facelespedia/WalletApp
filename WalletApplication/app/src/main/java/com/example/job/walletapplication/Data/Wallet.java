@@ -23,6 +23,15 @@ public class Wallet {
     public void setBalance(int balance) {
         this.balance = balance;
     }
+    public void addIncome(int in) {
+        income.add(in);
+    }
+    public void addExpenses(int ex) {
+        expenses.add(ex);
+    }
+    public void addEvent(String ev) {
+        event.add(ev);
+    }
     public int getBalance() {
         return balance;
     }
