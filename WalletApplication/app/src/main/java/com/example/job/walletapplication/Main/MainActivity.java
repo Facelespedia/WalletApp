@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.job.walletapplication.Data.Wallet;
 import com.example.job.walletapplication.R;
 
 public class MainActivity extends AppCompatActivity implements WalletView{
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements WalletView{
     @Override
     public void setPage(int page) {
 
+
+
     }
 
 
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
 
         private static final String ARG_SECTION_NUMBER = "section_number";
         View rootView;
+        AddPresenter addPresenter = null;
 
         public PlaceholderFragment() {
         }
@@ -103,7 +107,11 @@ public class MainActivity extends AppCompatActivity implements WalletView{
 
             }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
 
-                rootView = inflater.inflate(R.layout.add_main,container,false);
+                if(addPresenter == null) {
+                    Wallet w = new Wallet();
+                    addPresenter = new AddPresenter(w,inflater.inflate(R.layout.add_main,container,false));
+                    rootView = addPresenter.getView();
+                }
 
             }
             return rootView;

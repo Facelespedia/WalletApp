@@ -4,7 +4,7 @@ package com.example.job.walletapplication.Data;
  * Created by Job on 6/3/2017 AD.
  */
 
-public abstract  class Wallet {
+public class Wallet {
 
     public int balance;
 
@@ -17,6 +17,6 @@ public abstract  class Wallet {
     }
 
 
-    abstract void calculateBalance(int value);
+//    abstract void calculateBalance(int value);
 
 }
