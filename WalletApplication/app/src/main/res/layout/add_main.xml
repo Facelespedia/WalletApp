@@ -62,7 +62,6 @@
             android:layout_alignBottom="@+id/radioButton_expenses"
             android:layout_toEndOf="@+id/textView_money"
             android:width="100dp"
-            android:onClick="clickRadio"
             android:text="Income" />
 
         <RadioButton
@@ -70,7 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:width="120dp"
-            android:onClick="clickRadio"
             android:text="Expenses"
             android:layout_alignTop="@+id/radioGroup"
             android:layout_toEndOf="@+id/button_submit" />

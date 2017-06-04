@@ -1,7 +1,10 @@
 package com.example.job.walletapplication.Main;
 
+import android.content.Context;
 import android.provider.Settings;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +25,7 @@ public class AddPresenter {
 
     private  Wallet w;
     private    View v;
-    private String type = "Income";
+    private String type;
     int eventID,moneyID;
     Data data;
 
@@ -58,30 +61,41 @@ public class AddPresenter {
         b.setOnClickListener(new View.OnClickListener() {
             EditText Eevent = (EditText) v.findViewById(eventID);
             EditText Emoney = (EditText) v.findViewById(moneyID);
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
             @Override
             public void onClick(View v) {
-                int money = Integer.parseInt(Emoney.getText().toString());
-                String event = Eevent.getText().toString();
-                if(type.equalsIgnoreCase("Income")) {
-                    data = new Income(money,event);
-                    data.calculateBalance(w);
-                    w.addIncome(data.getMoney());
-                    w.addEvent(data.getEvent());
-                }else if(type.equalsIgnoreCase("Expenses")) {
-                    data = new Expenses(money,event);
-                    data.calculateBalance(w);
-                    w.addExpenses(data.getMoney());
-                    w.addEvent(data.getEvent());
-                }
-
-
+                builder.setMessage("Confirm ?");
+                builder.setNegativeButton("Confirm", new DialogInterface.OnClickListener() {
+                    int money = Integer.parseInt(Emoney.getText().toString());
+                    String event = Eevent.getText().toString();
+                    public void onClick(DialogInterface dialog, int id) {
+                        if(type.equalsIgnoreCase("Income")) {
+                            data = new Income(money,event);
+                            data.calculateBalance(w);
+                            w.addIncome(data.getMoney());
+                            w.addDiary("+");
+                            w.addEvent(data.getEvent());
+                        }else if(type.equalsIgnoreCase("Expenses")) {
+                            data = new Expenses(money,event);
+                            data.calculateBalance(w);
+                            w.addExpenses(data.getMoney());
+                            w.addDiary("-");
+                            w.addEvent(data.getEvent());
+                        }
+                    }
+                });
+                builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
             }
         });
     }
 
-    public void reset() {
 
-    }
 
 
 }

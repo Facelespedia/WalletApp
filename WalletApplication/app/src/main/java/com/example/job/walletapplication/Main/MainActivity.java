@@ -1,8 +1,6 @@
 package com.example.job.walletapplication.Main;
 
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -17,9 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private ViewPager mViewPager;
+    public static Wallet w;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+        w = new Wallet();
     }
 
 
@@ -68,17 +68,12 @@ public class MainActivity extends AppCompatActivity implements WalletView{
             return true;
         }
 
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void setPage(int page) {
-
-
-
-    }
-
-    public void clickRadio(View view) {
 
     }
 
@@ -88,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         private static final String ARG_SECTION_NUMBER = "section_number";
         View rootView;
         AddPresenter addPresenter = null;
+        WalletPresenter walletPresenter = null;
+        String[] myItem;
 
         public PlaceholderFragment() {
         }
@@ -105,18 +102,28 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                                  Bundle savedInstanceState) {
 
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
-
-                rootView = inflater.inflate(R.layout.note_main, container, false);
-
-            }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
-
+                System.out.println(w.getBalance());
                 rootView = inflater.inflate(R.layout.account_main,container,false);
+                TextView textBalance = (TextView) rootView.findViewById(R.id.account_balance);
+                textBalance.setText(""+w.getBalance());
+                int indexIncome=0,indexExpenses=0;
+                myItem = new String[w.getDiary().size()];
+                for(int i = 0;i < myItem.length;i++) {
+                    if(w.getDiary().get(i).equalsIgnoreCase("+")) {
+                        myItem[i] = "Income Event : " +w.getEvent().get(i)+"        Money : "+w.getIncome().get(indexIncome) +" Bath";
+                        indexIncome++;
+                    }else if(w.getDiary().get(i).equalsIgnoreCase("-")) {
+                        myItem[i] = "Expenses Event : " +w.getEvent().get(i)+"        Money : "+w.getExpenses().get(indexExpenses) +" Bath";
+                        indexExpenses++;
+                    }
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rootView.getContext(), R.layout.activity_listview, R.id.textView, myItem);
+                ListView listView = (ListView) rootView.findViewById(R.id.listView_main);
+                listView.setAdapter(arrayAdapter);
 
-            }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
-
+            }
+            if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
                 if(addPresenter == null) {
-
-                    Wallet w = new Wallet();
                     addPresenter = new AddPresenter(w,inflater.inflate(R.layout.add_main,container,false));
                     rootView = addPresenter.getView();
                     RadioGroup rdg = (RadioGroup) rootView.findViewById(R.id.radioGroup);
@@ -124,10 +131,10 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                     addPresenter.setID(R.id.editText_event,R.id.editText_money);
                     Button submit = (Button) rootView.findViewById(R.id.button_submit);
                     addPresenter.onClickSubmit(submit);
-
                 }
 
             }
+
             return rootView;
         }
 
@@ -156,9 +163,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Note";
-                case 1:
-                    return "Today";
+                    return "Account";
                 case 2:
                     return "ADD";
             }

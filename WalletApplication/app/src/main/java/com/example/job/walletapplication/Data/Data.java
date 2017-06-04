@@ -16,9 +16,7 @@ public abstract class Data {
     public int getMoney() {
         return money;
     }
-    public String getEvent() {
-        return event;
-    }
+    public String getEvent() { return event; }
 
     public abstract void calculateBalance(Wallet w);
 

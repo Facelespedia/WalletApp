@@ -12,12 +12,14 @@ public class Wallet {
     private ArrayList <Integer>income;
     private ArrayList <Integer>expenses;
     private ArrayList <String>event;
+    private ArrayList <String>diary;
 
     public Wallet() {
         balance = 0;
         income = new ArrayList<Integer>();
         expenses = new ArrayList<Integer>();
         event = new ArrayList<String>();
+        diary = new ArrayList<String>();
     }
 
     public void setBalance(int balance) {
@@ -29,13 +31,14 @@ public class Wallet {
     public void addExpenses(int ex) {
         expenses.add(ex);
     }
-    public void addEvent(String ev) {
-        event.add(ev);
-    }
+    public void addEvent(String ev) { event.add(ev); }
+    public void addDiary(String d){ diary.add(d); }
     public int getBalance() {
         return balance;
     }
-
-
+    public ArrayList<String> getEvent(){ return event; }
+    public ArrayList<String> getDiary() { return diary; }
+    public ArrayList<Integer> getIncome() { return income; }
+    public ArrayList<Integer> getExpenses() { return expenses; }
 
 }
