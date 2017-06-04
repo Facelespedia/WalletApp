@@ -29,9 +29,7 @@ public class Wallet {
     public void addExpenses(int ex) {
         expenses.add(ex);
     }
-    public void addEvent(String ev) {
-        event.add(ev);
-    }
+    public void addEvent(String ev) { event.add(ev); }
     public int getBalance() {
         return balance;
     }

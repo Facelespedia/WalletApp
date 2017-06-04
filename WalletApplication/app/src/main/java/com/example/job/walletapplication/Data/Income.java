@@ -13,6 +13,6 @@ public class Income extends Data{
 
     @Override
     public void calculateBalance(Wallet w) {
-        w.setBalance(w.getBalance()+super.money);
+        w.setBalance(w.getBalance()+super.getMoney());
     }
 }
