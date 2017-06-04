@@ -17,8 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.job.walletapplication.Data.Wallet;
@@ -113,19 +115,23 @@ public class MainActivity extends AppCompatActivity implements WalletView{
             }else if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
 
                 if(addPresenter == null) {
+
                     Wallet w = new Wallet();
                     addPresenter = new AddPresenter(w,inflater.inflate(R.layout.add_main,container,false));
                     rootView = addPresenter.getView();
-                    RadioButton rbI = (RadioButton) rootView.findViewById(R.id.radioButton_income);
-                    RadioButton rbE = (RadioButton) rootView.findViewById(R.id.radioButton_expenses);
-                    addPresenter.onClickRadioButton(rbI,rbE);
-
+                    RadioGroup rdg = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+                    addPresenter.onClickRadioButton(rdg);
+                    Button submit = (Button) rootView.findViewById(R.id.button_submit);
+                    addPresenter.onClickSubmit(submit);
 
                 }
 
             }
             return rootView;
         }
+
+
+
     }
 
 
