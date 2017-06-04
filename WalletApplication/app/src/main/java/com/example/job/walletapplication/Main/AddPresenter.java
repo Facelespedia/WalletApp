@@ -4,9 +4,13 @@ import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.job.walletapplication.Data.Data;
+import com.example.job.walletapplication.Data.Expenses;
+import com.example.job.walletapplication.Data.Income;
 import com.example.job.walletapplication.Data.Wallet;
 import com.example.job.walletapplication.R;
 
@@ -19,6 +23,9 @@ public class AddPresenter {
     private  Wallet w;
     private    View v;
     private String type = "Income";
+    int eventID,moneyID;
+    Data data;
+
 
     public AddPresenter(Wallet w , View v) {
         this.w = w;
@@ -36,24 +43,48 @@ public class AddPresenter {
             }
         });
 
-
-
     }
 
-    public View getView(){
+    public View getView() {
         return v;
+    }
+
+    public void setID(int eventID,int moneyID) {
+        this.eventID = eventID;
+        this.moneyID = moneyID;
     }
 
     public void onClickSubmit(Button b) {
         b.setOnClickListener(new View.OnClickListener() {
+            EditText Eevent = (EditText) v.findViewById(eventID);
+            EditText Emoney = (EditText) v.findViewById(moneyID);
             @Override
             public void onClick(View v) {
-                System.out.println(type);
+                int money = Integer.parseInt(Emoney.getText().toString());
+                String event = Eevent.getText().toString();
+                if(type.equalsIgnoreCase("Income")) {
+                    System.out.println("TYPE : " + type);
+                    System.out.println("Event : " + event);
+                    System.out.println("Money : " + money);
+                    data = new Income(money,event);
+                    data.calculateBalance(w);
+                    System.out.println(w.getBalance());
+
+                }else if(type.equalsIgnoreCase("Expenses")) {
+                    System.out.println("TYPE : " + type);
+                    System.out.println("Event : " + event);
+                    System.out.println("Money : " + money);
+                    data = new Expenses(money,event);
+                    data.calculateBalance(w);
+                    System.out.println(w.getBalance());
+                }
+
+
             }
         });
     }
 
-    public void test() {
+    public void reset() {
 
     }
 

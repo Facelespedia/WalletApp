@@ -6,14 +6,14 @@ package com.example.job.walletapplication.Data;
 
 public abstract class Data {
 
-    private int money;
-    private  String event;
+    int money;
+    String event;
 
     public Data(int money,String event) {
         this.money = money;
         this.event = event;
     }
 
-    abstract void calculateBalance(Wallet w);
+    public abstract void calculateBalance(Wallet w);
 
 }

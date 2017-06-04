@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                     rootView = addPresenter.getView();
                     RadioGroup rdg = (RadioGroup) rootView.findViewById(R.id.radioGroup);
                     addPresenter.onClickRadioButton(rdg);
+                    addPresenter.setID(R.id.editText_event,R.id.editText_money);
                     Button submit = (Button) rootView.findViewById(R.id.button_submit);
                     addPresenter.onClickSubmit(submit);
 
