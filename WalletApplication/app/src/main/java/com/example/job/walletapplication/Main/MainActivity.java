@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 listView = (ListView) rootView.findViewById(R.id.listView_main);
                 walletPresenter.setArrayAdapter(R.layout.activity_listview,R.id.textView);
 
-
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
                 if(addPresenter == null) {
