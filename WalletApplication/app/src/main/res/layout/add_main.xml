@@ -1,91 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        >
     <TextView
         android:id="@+id/textView_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:text="Event : "
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp" />
-
-    <TextView
-        android:id="@+id/textView_money"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView_event"
-        android:layout_below="@+id/editText_event"
-        android:layout_marginTop="58dp"
-        android:text="Money : " />
-
+         />
     <EditText
         android:id="@+id/editText_event"
-        style="@style/Widget.AppCompat.EditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="12"
         android:hint="Event"
         android:inputType="textMultiLine"
-        android:layout_alignBaseline="@+id/textView_event"
-        android:layout_alignBottom="@+id/textView_event"
-        android:layout_toEndOf="@+id/textView_money"
-        android:layout_marginStart="30dp" />
-
-    <EditText
-        android:id="@+id/editText_money"
-        style="@style/Widget.AppCompat.EditText"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        >
+    <TextView
+        android:id="@+id/textView_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_money"
-        android:layout_alignBottom="@+id/textView_money"
-        android:layout_alignStart="@+id/editText_event"
+        android:text="Money : " />
+    <EditText
+        android:id="@+id/editText_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="12"
         android:hint="Money"
         android:inputType="textMultiLine|number" />
+    </LinearLayout>
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/radioGroup"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/textView_money">
-
+        android:layout_centerVertical="true">
         <RadioButton
             android:id="@+id/radioButton_income"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/radioButton_expenses"
-            android:layout_alignBottom="@+id/radioButton_expenses"
-            android:layout_toEndOf="@+id/textView_money"
             android:width="100dp"
             android:text="Income" />
-
         <RadioButton
             android:id="@+id/radioButton_expenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:width="120dp"
             android:text="Expenses"
-            android:layout_alignTop="@+id/radioGroup"
-            android:layout_toEndOf="@+id/button_submit" />
-
+                />
     </RadioGroup>
 
     <Button
         android:id="@+id/button_submit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="SUBMIT"
-        android:layout_marginStart="42dp"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignStart="@+id/editText_money" />
+        />
 
 
 
 
-</RelativeLayout>
+</LinearLayout>
