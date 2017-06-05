@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.example.job.walletapplication.Data.Wallet;
 import com.example.job.walletapplication.R;
 
-public class MainActivity extends AppCompatActivity implements WalletView{
+public class MainActivity extends AppCompatActivity {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -72,19 +72,14 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void setPage(int page) {
-
-    }
-
-
-    public static class PlaceholderFragment extends Fragment {
+    public static class PlaceholderFragment extends Fragment implements WalletView{
 
         private static final String ARG_SECTION_NUMBER = "section_number";
         View rootView;
         AddPresenter addPresenter = null;
         WalletPresenter walletPresenter = null;
-        String[] myItem;
+        TextView textBalance;
+        ListView listView;
 
         public PlaceholderFragment() {
         }
@@ -102,24 +97,14 @@ public class MainActivity extends AppCompatActivity implements WalletView{
                                  Bundle savedInstanceState) {
 
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1) {
-                System.out.println(w.getBalance());
-                rootView = inflater.inflate(R.layout.account_main,container,false);
-                TextView textBalance = (TextView) rootView.findViewById(R.id.account_balance);
-                textBalance.setText(""+w.getBalance());
-                int indexIncome=0,indexExpenses=0;
-                myItem = new String[w.getDiary().size()];
-                for(int i = 0;i < myItem.length;i++) {
-                    if(w.getDiary().get(i).equalsIgnoreCase("+")) {
-                        myItem[i] = "Income Event : " +w.getEvent().get(i)+"        Money : "+w.getIncome().get(indexIncome) +" Bath";
-                        indexIncome++;
-                    }else if(w.getDiary().get(i).equalsIgnoreCase("-")) {
-                        myItem[i] = "Expenses Event : " +w.getEvent().get(i)+"        Money : "+w.getExpenses().get(indexExpenses) +" Bath";
-                        indexExpenses++;
-                    }
-                }
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(rootView.getContext(), R.layout.activity_listview, R.id.textView, myItem);
-                ListView listView = (ListView) rootView.findViewById(R.id.listView_main);
-                listView.setAdapter(arrayAdapter);
+
+                walletPresenter = new WalletPresenter(w,inflater.inflate(R.layout.account_main,container,false),this);
+                rootView = walletPresenter.getView();
+                textBalance = (TextView) rootView.findViewById(R.id.account_balance);
+                walletPresenter.setBalanceResult();
+                listView = (ListView) rootView.findViewById(R.id.listView_main);
+                walletPresenter.setArrayAdapter(R.layout.activity_listview,R.id.textView);
+
 
             }
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 3) {
@@ -139,7 +124,15 @@ public class MainActivity extends AppCompatActivity implements WalletView{
         }
 
 
+        @Override
+        public void setBalanceResult(int balance) {
+            textBalance.setText(""+balance);
+        }
 
+        @Override
+        public void setListViewResult(ArrayAdapter<String> arrayAdapter) {
+            listView.setAdapter(arrayAdapter);
+        }
     }
 
 
